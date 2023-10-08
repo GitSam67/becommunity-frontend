@@ -97,7 +97,7 @@ export const AuthProvider = ({ children }) => {
         // to run or to access below jwt function you have to npm install jwt-decode
         setUser(jwt_decode(data.access));
         localStorage.setItem("authToken", JSON.stringify(data));
-        navigate("/chooseinterest");
+        navigate("/terms");
       } else {
         alert("Something went wrong!");
       }
