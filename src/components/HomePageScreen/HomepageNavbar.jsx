@@ -131,7 +131,7 @@ function HomepageNavbar({ open, setOpen }) {
                 />
                 <div className="absolute top-10 left-20 w-[100%] text-white flex justify-center">
                   {matchingCommunities.length > 0 ? (
-                    <div className="bg-[#0B222C] w-[100%] searchQuery">
+                    <div className="bg-[#0B222C] w-[100%] searchQuery border-2 border-gray-700">
                       {matchingCommunities.map((community) => (
                         <div
                           onClick={() => handleClick(community.id)}

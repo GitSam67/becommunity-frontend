@@ -91,15 +91,16 @@ function CreatePostModal({ closeModal }) {
             </button>
           </div>
 
-          <div className="bg-[#0F2A36] rounded-lg w-full model-main-container pb-3 px-2 border-2 border-gray-800">
+          <div className="bg-[#0F2A36] rounded-lg w-full model-main-container pb-3 px-3 border-2 border-white">
             <div className="font-Inter text-white">
-              <div className="pl-[16px] pt-4 pb-2 text-2xl border-b-2 border-white w-fit px-10 mb-3">
-                Create New Post
+              <div className="pl-[16px] pt-4 pb-2 text-2xl w-fit px-10 mb-3">
+                Create a Post
               </div>
+              <hr className="m-0 p-0 text-gray-100"/>
               <form onSubmit={handleSubmit(handleCreatePost)}>
                 <div className="title">
                   <input
-                    className="title-input"
+                    className="title-input border-l-2 border-t-2 border-white focus:border-l-0 focus:border-t-0"
                     placeholder="Title"
                     type="text"
                     {...register("post-title", { required: true })}
@@ -107,7 +108,7 @@ function CreatePostModal({ closeModal }) {
                 </div>
                 <div className="description">
                   <textarea
-                    className="description-input"
+                    className="description-input border-l-2 border-t-2 border-white focus:border-l-0 focus:border-t-0"
                     placeholder="Description"
                     type="text"
                     {...register("post-description", { required: true })}
@@ -129,7 +130,7 @@ function CreatePostModal({ closeModal }) {
                 </div>
                 <div className="post-image ml-3 mt-3">
                   <Tooltip className="transition delay-40 ease-in duration-400 bg-[#0B222C] text-gray-200" title="Attach file" arrow>
-                      <label htmlFor="file" className="cursor-pointer rounded-lg">
+                      <label htmlFor="file" className="cursor-pointer rounded-lg border-l-2 border-t-2 border-white">
                         <div className="flex pt-2 px-2">
                           <i className="fa fa-link text-lg" /><p className="text-gray-200 text-md mx-2">{fileBtn == true ? file.name : "Attach file"}</p>
                         </div>
