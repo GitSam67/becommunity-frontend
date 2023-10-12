@@ -91,7 +91,7 @@ function CreatePostModal({ closeModal }) {
             </button>
           </div>
 
-          <div className="bg-[#0F2A36] rounded-lg w-full model-main-container pb-3 px-3 border-2 border-gray-300">
+          <div className="bg-[#0F2A36] rounded-lg w-full model-main-container pb-3 px-3 border-2 border-gray-500">
             <div className="font-Inter text-white">
               <div className="pl-[16px] pt-4 pb-2 text-2xl w-fit px-10 mb-3">
                 Create <span className="text-green-400">a</span> Post

@@ -11,18 +11,34 @@ function HomepageNavbar({ open, setOpen }) {
   const dropRef = useRef();
   const notifyRef = useRef();
   const [drop, setDrop] = useState(false);
+  const [count, setCount] = useState("");
   const [notifyModal, setNotifyModal] = useState(false);
+  const [postsData, setPostsData] = useState([]);
   const [userData, setUserData] = useState([]);
   const [allCommunities, setAllCommunities] = useState([]);
   const [communitySearch, setCommunitySearch] = useState("");
   const [matchingCommunities, setMatchingCommunities] = useState([]);
+  const { authToken } = useContext(AuthContext);
 
   const { get_user } = useContext(AuthContext);
 
   useEffect(() => {
+    getPost();
     getCurrentUser();
     getAllCommunities();
   }, []);
+
+  const getPost = async () => {
+    let response = await fetch("http://127.0.0.1:8000/get-post/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken.refresh}`,
+      },
+    });
+    let data = await response.json();
+    setPostsData(data);
+  };
 
   const getCurrentUser = async () => {
     let data = await get_user();
@@ -40,8 +56,9 @@ function HomepageNavbar({ open, setOpen }) {
 
     let data = await response.json();
     setAllCommunities(data);
-    console.log("all community" , data);
+    console.log("all community", data);
   };
+
   useEffect(() => {
     const close = (e) => {
       if (!dropRef.current.contains(e.target)) setDrop(false);
@@ -93,6 +110,17 @@ function HomepageNavbar({ open, setOpen }) {
     setMatchingCommunities([]);
     setCommunitySearch("");
   };
+
+  useEffect(() => {
+    postsData.filter((posts) => {
+      const currentDateTime = new Date();
+      const last48Hours = new Date(currentDateTime - 48 * 60 * 60 * 1000); // 48 hours in milliseconds
+      return new Date(posts.date) > last48Hours;
+    });
+
+    setCount(Object.keys(postsData).length);
+  },[]);
+
 
   return (
     <>
@@ -167,9 +195,14 @@ function HomepageNavbar({ open, setOpen }) {
                   {!notifyModal ? (
                     <div className="relative">
                       <i class="fa-regular fa-bell text-white text-2xl"></i>
-                      <h2 className="absolute fixed top-0 left-4 text-sm text-white bg-red-500 px-1 rounded-full">
-                        3
-                      </h2>
+                      {
+                        count > 0 ?
+                          <h2 className="absolute fixed top-0 left-4 text-sm text-white bg-red-500 px-1 rounded-full">
+                            {count}
+                          </h2>
+                          :
+                          ""
+                      }
                     </div>
                   ) : (
                     <i class="bell fa-solid fa-bell text-white text-2xl"></i>

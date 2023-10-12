@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./UserProfile.css";
 import AuthContext from "../../context/AuthContext";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Tooltip from "@mui/material/Tooltip";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import cameraImg from "../../assets/camera.svg";
@@ -89,7 +89,7 @@ function UserProfile() {
   };
 
   return (
-    <div className="relative profileBox bg-[#0F2A36] pt-5">
+    <div className="profileBox bg-[#0F2A36]">
       <div>
         <Toaster position="top-right" />
       </div>
@@ -104,122 +104,117 @@ function UserProfile() {
         </div>
       ) : (
         <>
-        <div className="absolute top-5 left-5">
-              <NavLink to="/" className="text-2xl no-underline w-full font-Inter text-white">
-                <span className="text-green-400">Be</span>Community
-              </NavLink>
+          <div className="font-Inter text-white p-4 text-3xl font-semibold">
+            Edit your Profile
           </div>
-          <div className="w-2/3 border border-gray-500 shadow-xl rounded-lg py-3 mx-auto">
-            <div className="px-4">
-              <div className="w-full flex justify-center items-center">
-                <div className="w-1/3">
-              {updatedImg ? (
-                <div className="mb-2 relative">
-                  <img
-                    className="relative user-profile-img border-2 border-gray-400 shadow-xl"
-                    height="400px"
-                    width="400px"
-                    src={updatedImg}
-                    alt=""
-                  />
+          <div className="px-4">
+            {updatedImg ? (
+              <div className="mb-2 relative">
+                <img
+                  className="relative user-profile-img border-2 border-black shadow-xl"
+                  height="400px"
+                  width="400px"
+                  src={updatedImg}
+                  alt=""
+                />
 
-                  <Tooltip
-                    className="transition delay-40 ease-in duration-400 bg-[#0e394b] text-white"
-                    title="Choose image"
-                    arrow
-                  >
-                    <div className="absolute left-44 bottom-5 camera-img">
-                      <label htmlFor="file" className="cursor-pointer">
-                        <img src={cameraImg} alt="" />
-                        <input
-                          type="file"
-                          id="file"
-                          name="image"
-                          onChange={handleImageUpload}
-                          accept="image/*"
-                          hidden
-                        />
-                      </label>
-                    </div>
-                  </Tooltip>
-                  <br />
-                </div>
-              ) : (
-                <div className="mb-2 relative">
-                  <img
-                    className="relative user-profile-img border-2 border-black shadow-xl"
-                    height="400px"
-                    width="400px"
-                    src={`data:image/jpeg;base64,${userData.image}`}
-                    alt=""
-                  />
-
-                  <Tooltip
-                    className="transition delay-40 ease-in duration-400 bg-[#0e394b] text-white"
-                    title="Choose image"
-                    arrow
-                  >
-                    <div className="absolute left-44 bottom-5 camera-img">
-                      <label htmlFor="file" className="cursor-pointer">
-                        <img src={cameraImg} alt="" />
-                        <input
-                          type="file"
-                          id="file"
-                          name="image"
-                          onChange={handleImageUpload}
-                          accept="image/*"
-                          hidden
-                        />
-                      </label>
-                    </div>
-                  </Tooltip>
-                  <br />
-                </div>
-              )}
-              </div>
-              <div className="w-2/3 flex-col">
-                  <div className="text-white text-xl"> {userData.username} </div>
-                  <div className="text-white text-xl"> {userData.bio} </div>
-              </div>
-              </div>
-              <div className="mt-2 font-Inter">
-                <form>
-                  <label className="font-medium text-xl text-white" htmlFor="dob">
-                    Birth Date
-                  </label>
-                  <br />
-                  <input
-                    className="mt-2 mb-3 p-2 rounded-lg bg-[#0e394b] text-white text-lg"
-                    type="date"
-                    value={newDOB ? newDOB : userData.dob}
-                    onChange={handleDOBChange}
-                  />
-                  <br />
-                  <label className="font-medium text-xl text-white" htmlFor="Bio">
-                    Bio
-                  </label>
-                  <br />
-                  <textarea
-                    className="mt-2 mb-3 min-h-[60px] p-2 rounded-lg bg-[#0e394b] text-white text-lg"
-                    type="text"
-                    value={newBio !== "null" ? userData.bio : ""}
-                    onChange={handleBioChange}
-                  />
-
-                  <br />
-                  <div className="flex flex-start items-center">
-                    <button
-                      onClick={handleEditProfile}
-                      className="my-2 rounded-[12px] bg-[#03C988] hover:bg-[#08a36f]"
-                      type="submit"
-                    >
-                      <div className="px-4 py-2 text-black font-Inter font-semibold">
-                        Save Changes
-                      </div>
-                    </button>
+                <Tooltip
+                  className="transition delay-40 ease-in duration-400 bg-[#0e394b] text-white"
+                  title="Choose image"
+                  arrow
+                >
+                  <div className="absolute left-44 bottom-5 camera-img">
+                    <label htmlFor="file" className="cursor-pointer">
+                      <img src={cameraImg} alt="" />
+                      <input
+                        type="file"
+                        id="file"
+                        name="image"
+                        onChange={handleImageUpload}
+                        accept="image/*"
+                        hidden
+                      />
+                    </label>
                   </div>
-                </form>
+                </Tooltip>
+                <br />
               </div>
+            ) : (
+              <div className="mb-2 relative">
+                <img
+                  className="relative user-profile-img border-2 border-black shadow-xl"
+                  height="400px"
+                  width="400px"
+                  src={`data:image/jpeg;base64,${userData.image}`}
+                  alt=""
+                />
+
+                <Tooltip
+                  className="transition delay-40 ease-in duration-400 bg-[#0e394b] text-white"
+                  title="Choose image"
+                  arrow
+                >
+                  <div className="absolute left-44 bottom-5 camera-img">
+                    <label htmlFor="file" className="cursor-pointer">
+                      <img src={cameraImg} alt="" />
+                      <input
+                        type="file"
+                        id="file"
+                        name="image"
+                        onChange={handleImageUpload}
+                        accept="image/*"
+                        hidden
+                      />
+                    </label>
+                  </div>
+                </Tooltip>
+                <br />
+              </div>
+            )}
+            <div className="mt-2 font-Inter">
+              <form>
+                <label className="font-medium text-xl text-white" htmlFor="dob">
+                  Birth Date
+                </label>
+                <br />
+                <input
+                  className="mt-2 mb-3 p-2 rounded-lg bg-[#0e394b] text-white text-lg"
+                  type="date"
+                  value={newDOB ? newDOB : userData.dob}
+                  onChange={handleDOBChange}
+                />
+                <br />
+                <label className="font-medium text-xl text-white" htmlFor="Bio">
+                  Bio
+                </label>
+                <br />
+                <textarea
+                  className="mt-2 mb-3 min-h-[60px] p-2 rounded-lg bg-[#0e394b] text-white text-lg"
+                  type="text"
+                  value={newBio !== "null" ? newBio : ""}
+                  onChange={handleBioChange}
+                />
+
+                <br />
+                <div className="flex flex-start items-center">
+                  <button
+                    onClick={handleEditProfile}
+                    className="my-2 rounded-[12px] bg-[#03C988] hover:bg-[#08a36f]"
+                    type="submit"
+                  >
+                    <div className="px-4 py-2 text-black font-Inter font-semibold">
+                      Save Changes
+                    </div>
+                  </button>
+                  <Link
+                    to="/"
+                  >
+                    <div className="font-Inter ml-6 underline text-white hover:underline backtohome-btn">
+                      Back to Home
+                    </div>
+                  </Link>
+                </div>
+              </form>
             </div>
           </div>
         </>

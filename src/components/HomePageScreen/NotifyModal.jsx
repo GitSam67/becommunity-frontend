@@ -33,21 +33,22 @@ function NotifyModal() {
 
   const filterPosts = (posts) => {
     const currentDateTime = new Date();
-    const last48Hours = new Date(currentDateTime - 480 * 60 * 60 * 1000); // 48 hours in milliseconds
+    const last48Hours = new Date(currentDateTime - 48 * 60 * 60 * 1000); // 48 hours in milliseconds
 
     return posts.filter((post) => new Date(post.date) > last48Hours);
   };
 
   // Filter posts and map them
   const latestPosts = filterPosts(postsData);
+  const count = (Object.keys(latestPosts).length);
+  console.log(count);
   return (
     <>
-      <div className="notify z-50 absolute w-96 h-96 px-3 pb-3 bg-[#0B222C] flex-col justify-center rounded-lg overflow-y-auto text-left text-white font-Inter">
+      <div className={`notify z-50 absolute w-96 px-3 pb-3 bg-[#0B222C] flex-col justify-center rounded-lg overflow-y-auto text-left text-white font-Inter shadow-xl ${count > 0 ? 'h-96' : 'h-fit'}`}>
         <div className="py-2 border-b-2 border-gray-100 text-gray-100 text-left px-1 text-xl mb-4 mt-2 font-semibold">
           Notifications
         </div>
-        {latestPosts
-          .filter(
+        {latestPosts.filter(
             (notification) => notification.post_creator !== userData.username
           )
           .map((notification, index) => (
@@ -60,7 +61,9 @@ function NotifyModal() {
                 ? notification.description.substring(0, 100) + "..."
                 : notification.description}
             </div>
-          ))}
+            
+            ))}
+            {!count && <div className="font-Inter text-xl text-white my-3 text-center w-full"> No New Notifications..!!</div>}
 
         {/* <div className='mb-5'>
         <span className='font-bold'>New Community Initiative: </span> 
