@@ -40,6 +40,7 @@ function HomepageNavbar({ open, setOpen }) {
 
     let data = await response.json();
     setAllCommunities(data);
+    console.log("all community" , data);
   };
   useEffect(() => {
     const close = (e) => {

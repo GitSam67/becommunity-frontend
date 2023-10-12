@@ -13,7 +13,9 @@ import CommunityRightSideBar from "./CommunityRightSideBar";
 import { NavLink, Route } from "react-router-dom";
 import Posts from "./Posts";
 import Chats from "./Chats";
+import ChatContext from "../../context/ChatContext";
 function CommunityPage() {
+  const {getRoom} = useContext(ChatContext)
   const [open, setOpen] = useState(false);
   const [postBtn, setPostBtn] = useState(false);
   // const [communityName, setCommunityName] = useState("");
@@ -89,6 +91,8 @@ function CommunityPage() {
   const [activeLink, setActiveLink] = useState("posts");
   const handleNavLinkClick = (link) => {
     setActiveLink(link);
+    getRoom(communityInfo.id)
+    console.log(communityInfo.name);
   };
 
   const createPost = (e) => {
@@ -254,8 +258,8 @@ function CommunityPage() {
               ) : null}
             </div>
 
-            <div className="w-full z-20 fixed bottom-0 h-9 bg-[#0F2A36]"></div>
-
+            {/* <div className="w-full z-20 fixed bottom-0 h-9 bg-[#0F2A36]"></div> */}
+            
             <div className="mt-3">
               {activeLink === "posts" ? <Posts open={open} /> : <Chats />}
             </div>
