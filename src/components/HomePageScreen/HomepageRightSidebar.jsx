@@ -115,7 +115,7 @@ function HomepageRightSidebar() {
         <div className="font-Inter flex flex-col shadow-xl z-10 p-2 bg-[#0B222C] rounded-lg sticky overflow-y-auto right-0 top-10 my-4 mx-2">
           <div className="text-white font-semibold px-2 py-1 text-xl">
             {" "}
-            {userData.username}{" "}
+            {userData.username}{" "} 
           </div>
           {userData.bio ?(<div className="text-[#bbbbbb] p-2 text-lg"> {userData.bio} </div>):null}
           
