@@ -91,16 +91,16 @@ function CreatePostModal({ closeModal }) {
             </button>
           </div>
 
-          <div className="bg-[#0F2A36] rounded-lg w-full model-main-container pb-3 px-3 border-2 border-white">
+          <div className="bg-[#0F2A36] rounded-lg w-full model-main-container pb-3 px-3 border-2 border-gray-300">
             <div className="font-Inter text-white">
               <div className="pl-[16px] pt-4 pb-2 text-2xl w-fit px-10 mb-3">
-                Create a Post
+                Create <span className="text-green-400">a</span> Post
               </div>
               <hr className="m-0 p-0 text-gray-100"/>
               <form onSubmit={handleSubmit(handleCreatePost)}>
                 <div className="title">
                   <input
-                    className="title-input border-l-2 border-t-2 border-white focus:border-l-0 focus:border-t-0"
+                    className="title-input border-l border-b border-gray-500 shadow-xl focus:border-l-0 focus:border-t-0"
                     placeholder="Title"
                     type="text"
                     {...register("post-title", { required: true })}
@@ -108,7 +108,7 @@ function CreatePostModal({ closeModal }) {
                 </div>
                 <div className="description">
                   <textarea
-                    className="description-input border-l-2 border-t-2 border-white focus:border-l-0 focus:border-t-0"
+                    className="description-input border-l border-b border-gray-500 shadow-xl focus:border-l-0 focus:border-t-0"
                     placeholder="Description"
                     type="text"
                     {...register("post-description", { required: true })}
@@ -117,7 +117,7 @@ function CreatePostModal({ closeModal }) {
                 <div className="community">
                   <select
                     id="dropdown"
-                    className="community-dropdown-menu"
+                    className="community-dropdown-menu shadow-xl"
                     {...register("post-community", { required: true })}
                   >
                     <option value="">-- Select --</option>
@@ -130,7 +130,7 @@ function CreatePostModal({ closeModal }) {
                 </div>
                 <div className="post-image ml-3 mt-3">
                   <Tooltip className="transition delay-40 ease-in duration-400 bg-[#0B222C] text-gray-200" title="Attach file" arrow>
-                      <label htmlFor="file" className="cursor-pointer rounded-lg border-l-2 border-t-2 border-white">
+                      <label htmlFor="file" className="cursor-pointer rounded-lg border-l border-b border-gray-500 shadow-xl">
                         <div className="flex pt-2 px-2">
                           <i className="fa fa-link text-lg" /><p className="text-gray-200 text-md mx-2">{fileBtn == true ? file.name : "Attach file"}</p>
                         </div>

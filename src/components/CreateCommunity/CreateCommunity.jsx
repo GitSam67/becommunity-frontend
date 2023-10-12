@@ -64,14 +64,15 @@ function CreateCommunity() {
   }
 
   return (
-    <div className="create-community bg-[#0F2A36] pt-5">
-      <div className="font-Inter text-white border-2 flex-col items-center justify-center w-2/3 py-2 pb-5 rounded-lg border-white mx-auto">
-        <div className="text-center pt-4 pb-3 text-3xl font-semibold">Create a Community</div>
+    <div className="relative create-community bg-[#0F2A36] pt-5">
+      <div className="absolute top-4 left-4 text-2xl font-bold text-white"><span className="text-green-400">Be</span>Community</div>
+      <div className="font-Inter text-white border-2 flex-col items-center justify-center w-2/3 py-2 pb-5 rounded-lg border-gray-500 mx-auto">
+        <div className="text-center pt-4 pb-3 text-3xl font-semibold">Create <span className="text-green-400">a</span> Community</div>
         <hr className="mt-1 p-0 text-gray-100"/>
         <form onSubmit={handleSubmit(handleCreateCommunity)} className="w-5/6 flex-col justify-center items-center mx-auto">
           <div className="name">
             <input
-              className="name-input border-l-2 border-t-2 border-white"
+              className="name-input border-l border-b shadow-2xl border-gray-500"
               placeholder="Community name"
               type="text"
               {...register("community-name", { required: true })}
@@ -79,7 +80,7 @@ function CreateCommunity() {
           </div>
           <div className="description">
             <textarea
-              className="description-input border-l-2 border-t-2 border-white"
+              className="description-input border-l border-b shadow-2xl border-gray-500"
               placeholder="Descrbe your community"
               type="text"
               {...register("community-description", { required: true })}
