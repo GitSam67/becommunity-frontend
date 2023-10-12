@@ -11,6 +11,7 @@ import Recommendation from "./pages/Recommendation/Recommendation";
 import CreatePost from "./components/CreatePost/CreatePost";
 import CreateCommunity from "./components/CreateCommunity/CreateCommunity";
 import UserProfile from "./components/UserProfile/UserProfile";
+import Terms from "./components/TermsConditions/Terms";
 import CommunityPage from "./components/CommunityPage/CommunityPage";
 import PostPage from "./components/PostPage/PostPage";
 import { ChatProvider } from "./context/ChatContext";
@@ -37,6 +38,8 @@ function App() {
               </ChatProvider>
             } />
             <Route path="/post/:id" element={<PostPage />} />
+            <Route path="/terms" element={<Terms />} />
+
           </Routes>
         </AuthProvider>
       </BrowserRouter>
