@@ -116,6 +116,7 @@ function Modal({ closeModal, interestvalues }) {
     let data = await response.json();
     console.log(data);
     navigate("/");
+    window.location.reload();
   };
 
   return (

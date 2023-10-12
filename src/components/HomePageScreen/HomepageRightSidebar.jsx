@@ -126,7 +126,7 @@ function HomepageRightSidebar() {
               {" "}
               {createdCommunityCount.length}{" "}
             </span>{" "}
-            communities{" "}
+            Communities Created{" "}
           </div>
         </div>
         <div className="font-Inter flex flex-col shadow-xl z-10 p-2 bg-[#0B222C] rounded-lg sticky overflow-y-auto right-0 top-10 m-2 sidebar-divs">
