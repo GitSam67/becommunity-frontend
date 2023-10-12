@@ -21,7 +21,7 @@ function Chats() {
   }, []);
 
   const getMessage = async () => {
-    let resposne = await fetch(
+    let response = await fetch(
       `http://localhost:8000/getMessage/${room_name}/`,
       {
         method: "GET",
@@ -32,7 +32,12 @@ function Chats() {
       }
     );
 
-    let data = await resposne.json();
+    let data = await response.json();
+    // Sort the messages by date in ascending order (oldest to newest)
+    // data.sort((a, b) => new Date(a.date) - new Date(b.date));
+    // If you want them in descending order (newest to oldest), you can use:
+    data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
     console.log(data);
     setMessages(data);
   };
@@ -55,26 +60,26 @@ function Chats() {
   };
   return (
     <div className="main-chat-box font-Inter">
-      <div className="my-2 mx-4 flex flex-col h-screen bg-[#0B222C] rounded-[20px] px-6 py-2 text-white">
-        <div className="overflow-y-auto flex-grow">
-          {messages.map((messages, index) =>
-            user.user_id == messages.user ? (
-              <div className="flex justify-end">
-                <span className="rounded-lg py-2 px-3 my-2 bg-[#0F2A36]">
-                  {messages.message}, {messages.user}, {messages.community},{" "}
-                  {messages.username}
-                </span>
+      <div className="my-2 mx-4 flex flex-col h-[420px] bg-[#0B222C] rounded-[20px] px-6 py-2 text-white">
+        <div className="overflow-y-auto flex-grow flex flex-col-reverse">
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={`flex mx-2 ${
+                user.user_id === message.user ? "justify-end" : "justify-start"
+              }`}
+            >
+              <div className="w-[280px] flex flex-col rounded-lg py-2 px-3 my-2 bg-[#0F2A36]">
+                <div className="text-[#ACACAC] text-sm">
+                  <span className="border-b border-[#ACACAC]">{message.username}</span>
+                </div>
+
+                <div className="my-2 text-md">{message.message}</div>
               </div>
-            ) : (
-              <div className="flex justify-start">
-                <span className="rounded-lg py-2 px-3 my-2 bg-[#0F2A36]">
-                  {messages.message}, {messages.user}, {messages.community},{" "}
-                  {messages.username}
-                </span>
-              </div>
-            )
-          )}
+            </div>
+          ))}
         </div>
+
         {/* <div></div> */}
         <div className="msg-inputbox">
           <div className="flex justify-between items-center">
@@ -92,9 +97,13 @@ function Chats() {
             <div>
               <button
                 onClick={handleMessageSend}
-                className="text-white bg-green-600 hover:bg-green-700 px-2 mx-2 h-[36px] rounded-[10px]"
+                className="text-white px-2 mx-2 h-[36px] rounded-[10px]"
+                disabled={userMsg === ""}
+                style={{
+                  backgroundColor: userMsg !== "" ? "#03C988" : "#08a36f",
+                }}
               >
-                send
+                Send
               </button>
             </div>
           </div>
