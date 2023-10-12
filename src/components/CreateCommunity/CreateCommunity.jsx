@@ -3,7 +3,7 @@ import Tooltip from "@mui/material/Tooltip";
 import AuthContext from "../../context/AuthContext";
 import { useForm } from "react-hook-form";
 import "./CreateCommunity.css";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import CreatableSelect from 'react-select/creatable';
 function CreateCommunity() {
   const [file, setFile] = useState("");
@@ -65,9 +65,13 @@ function CreateCommunity() {
 
   return (
     <div className="relative create-community bg-[#0F2A36] pt-5">
-      <div className="absolute top-4 left-4 text-2xl font-bold text-white"><span className="text-green-400">Be</span>Community</div>
+      <div className="absolute top-4 left-4 ">
+          <NavLink to="/" className="text-2xl no-underline font-Inter text-white">
+            <span className="text-green-400">Be</span>Community
+          </NavLink>
+      </div>
       <div className="font-Inter text-white border-2 flex-col items-center justify-center w-2/3 py-2 pb-5 rounded-lg border-gray-500 mx-auto">
-        <div className="text-center pt-4 pb-3 text-3xl font-semibold">Create <span className="text-green-400">a</span> Community</div>
+        <div className="text-center pt-4 pb-3 text-3xl font-Inter">Create <span className="text-green-400">a</span> Community</div>
         <hr className="mt-1 p-0 text-gray-100"/>
         <form onSubmit={handleSubmit(handleCreateCommunity)} className="w-5/6 flex-col justify-center items-center mx-auto">
           <div className="name">

@@ -89,7 +89,7 @@ function CreateCommunityPostModal({ closeModal }) {
   return (
     <div className="Modal bg-gray-700 bg-opacity-60 backdrop-filter backdrop-blur-sm z-30 w-full py-5 fixed flex justify-center h-screen items-center">
       <div className="ModalContainer h-screen relative md:w-1/2 w-full md:mx-0 mx-5 rounded-lg flex flex-col">
-        <div className="flex flex-col items-center rounded-lg border-2 border-gray-600">
+        <div className="flex flex-col items-center rounded-lg">
           <div className="w-full relative font-semibold bold text-white text-2xl">
             <button
               id="close"
@@ -100,15 +100,16 @@ function CreateCommunityPostModal({ closeModal }) {
             </button>
           </div>
 
-          <div className="bg-[#0F2A36] rounded-lg w-full model-main-container pb-3 px-2 border-2 border-gray-800">
+          <div className="bg-[#0F2A36] rounded-lg w-full model-main-container pb-3 px-2 border-2 border-gray-400">
             <div className="font-Inter text-white">
-              <div className="pl-[16px] pt-4 pb-2 text-2xl border-b-2 border-white w-fit px-10 rounded-md mb-3">
-                Create New Post
+              <div className="pl-[16px] pt-4 pb-2 text-2xl w-fit px-10 rounded-md mb-2">
+                Create <span className="text-green-400">New</span> Post
               </div>
+              <hr className="m-0 mb-2 p-0 text-gray-100"/>
               <form onSubmit={handleSubmit(handleCreatePost)}>
                 <div className="title">
                   <input
-                    className="title-input"
+                    className="title-input border-l border-b border-gray-500 shadow-xl "
                     placeholder="Title"
                     type="text"
                     {...register("post-title", { required: true })}
@@ -116,7 +117,7 @@ function CreateCommunityPostModal({ closeModal }) {
                 </div>
                 <div className="description">
                   <textarea
-                    className="description-input"
+                    className="description-input border-l border-b border-gray-500 shadow-xl "
                     placeholder="Describe your post..."
                     type="text"
                     {...register("post-description", { required: true })}
@@ -124,7 +125,7 @@ function CreateCommunityPostModal({ closeModal }) {
                 </div>
                 <div className="post-image ml-3 mt-3">
                   <Tooltip className="transition delay-40 ease-in duration-400 bg-[#0B222C] text-gray-200" title="Attach file" arrow>
-                      <label htmlFor="file" className="cursor-pointer rounded-lg">
+                      <label htmlFor="file" className="cursor-pointer rounded-lg border-l border-b border-gray-500 shadow-xl ">
                         <div className="flex pt-2 px-2">
                           <i className="fa fa-link text-lg" /><p className="text-gray-200 text-md mx-2">{fileBtn == true ? file.name : "Attach file"}</p>
                         </div>
