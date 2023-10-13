@@ -122,11 +122,14 @@ function HomepageRightSidebar() {
 
           <div className="text-[#ACACAC] text-lg px-2">
             {" "}
-            <span className="font-medium text-white">
+            <span>
               {" "}
-              {createdCommunityCount.length}{" "}
-            </span>{" "}
-            Communities Created{" "}
+              Communities Created:
+              {" "}
+              </span>
+            <span className="font-medium text-white">{" "}
+            {createdCommunityCount.length}{" "}
+            </span>
           </div>
         </div>
         <div className="font-Inter flex flex-col shadow-xl z-10 p-2 bg-[#0B222C] rounded-lg sticky overflow-y-auto right-0 top-10 m-2 sidebar-divs">
