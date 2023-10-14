@@ -2,9 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Notify.css";
 import AuthContext from "../../context/AuthContext";
 
-function NotifyModal() {
+function NotifyModal({postsData, count, setOpenNotify}) {
   const [userData, setUserData] = useState([]);
-  const [postsData, setPostsData] = useState([]);
   const { authToken } = useContext(AuthContext);
   const { get_user } = useContext(AuthContext);
 
@@ -14,41 +13,18 @@ function NotifyModal() {
     setUserData(data);
   };
 
-  const get_post = async () => {
-    let response = await fetch("http://127.0.0.1:8000/get-post/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${authToken.refresh}`,
-      },
-    });
-    let data = await response.json();
-    setPostsData(data);
-  };
-
   useEffect(() => {
-    get_post();
     getCurrentUser();
+    setOpenNotify(true);
   }, []);
-
-  const filterPosts = (posts) => {
-    const currentDateTime = new Date();
-    const last48Hours = new Date(currentDateTime - 48 * 60 * 60 * 1000); // 48 hours in milliseconds
-
-    return posts.filter((post) => new Date(post.date) > last48Hours);
-  };
-
-  // Filter posts and map them
-  const latestPosts = filterPosts(postsData);
-  const count = (Object.keys(latestPosts).length);
-  console.log(count);
+  
   return (
     <>
       <div className={`notify z-50 absolute w-96 px-3 pb-3 bg-[#0B222C] flex-col justify-center rounded-lg overflow-y-auto text-left text-white font-Inter shadow-xl ${count > 0 ? 'h-96' : 'h-fit'}`}>
         <div className="py-2 border-b-2 border-gray-100 text-gray-100 text-left px-1 text-xl mb-4 mt-2 font-semibold">
           Notifications
         </div>
-        {latestPosts.filter(
+        {postsData.filter(
             (notification) => notification.post_creator !== userData.username
           )
           .map((notification, index) => (
