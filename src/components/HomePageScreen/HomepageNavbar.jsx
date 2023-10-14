@@ -113,7 +113,7 @@ function HomepageNavbar({ open, setOpen }) {
     
   const filterPosts = (posts) => {
     const currentDateTime = new Date();
-    const last48Hours = new Date(currentDateTime - 4800 * 60 * 60 * 1000); // 48 hours in milliseconds
+    const last48Hours = new Date(currentDateTime - 48 * 60 * 60 * 1000); // 48 hours in milliseconds
 
     return posts.filter((posts) => new Date(posts.date) > last48Hours && posts.post_creator !== userData.username);
   };
