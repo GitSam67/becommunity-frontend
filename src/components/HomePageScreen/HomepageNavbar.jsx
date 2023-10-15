@@ -11,7 +11,7 @@ function HomepageNavbar({ open, setOpen }) {
   const dropRef = useRef();
   const notifyRef = useRef();
   const [drop, setDrop] = useState(false);
-  const [count, setCount] = useState("");
+  const [openNotify, setOpenNotify] = useState(false);
   const [notifyModal, setNotifyModal] = useState(false);
   const [postsData, setPostsData] = useState([]);
   const [userData, setUserData] = useState([]);
@@ -110,17 +110,17 @@ function HomepageNavbar({ open, setOpen }) {
     setMatchingCommunities([]);
     setCommunitySearch("");
   };
+    
+  const filterPosts = (posts) => {
+    const currentDateTime = new Date();
+    const last48Hours = new Date(currentDateTime - 48 * 60 * 60 * 1000); // 48 hours in milliseconds
 
-  useEffect(() => {
-    postsData.filter((posts) => {
-      const currentDateTime = new Date();
-      const last48Hours = new Date(currentDateTime - 48 * 60 * 60 * 1000); // 48 hours in milliseconds
-      return new Date(posts.date) > last48Hours;
-    });
+    return posts.filter((posts) => new Date(posts.date) > last48Hours && posts.post_creator !== userData.username);
+  };
 
-    setCount(Object.keys(postsData).length);
-  },[]);
-
+  // Filter posts and map them
+  const latestPosts = filterPosts(postsData);
+  const count  = Object.keys(latestPosts).length;
 
   return (
     <>
@@ -196,7 +196,7 @@ function HomepageNavbar({ open, setOpen }) {
                     <div className="relative">
                       <i class="fa-regular fa-bell text-white text-2xl"></i>
                       {
-                        count > 0 ?
+                        !openNotify && count > 0 ?
                           <h2 className="absolute fixed top-0 left-4 text-sm text-white bg-red-500 px-1 rounded-full">
                             {count}
                           </h2>
@@ -208,7 +208,7 @@ function HomepageNavbar({ open, setOpen }) {
                     <i class="bell fa-solid fa-bell text-white text-2xl"></i>
                   )}
 
-                  {notifyModal && <NotifyModal />}
+                  {notifyModal && <NotifyModal postsData={latestPosts} count={count} setOpenNotify={setOpenNotify}/>}
                 </div>
               </Tooltip>
 
