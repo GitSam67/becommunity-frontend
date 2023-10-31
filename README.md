@@ -1,4 +1,4 @@
-# Becommunity-Frontend
+# BeCommunity-Frontend
 
 This is the repositary for the frontend code of becommunity website. It will contain all the code of frontend components and pages of the website.
 ## Installation
